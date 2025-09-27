@@ -7,7 +7,7 @@ car_data = pd.read_csv('./vehicles_us.csv')
 st.header('Exploratory Data Analysis - Vehicles Dataset')
 
 hist_buttom = st.button('Construir Histograma')
-
+data = car_data[(car_data["price"] >= price_range[0]) & (car_data["price"] <= price_range[1])]
 if hist_buttom:
     st.write('Creacion de un histograma para odometer')
     fig = px.histogram(car_data, x="odometer")
@@ -21,14 +21,16 @@ if scatter_buttom:
     st.plotly_chart(fig, use_container_width=True)
 
 build_hist = st.checkbox("Mostrar histograma (odometer)")
-build_scatter = st.checkbox("Mostrar dispersion (odometer vs price)")
-
 if build_hist:
     st.write("Histograma de odometer")
-    fig = px.histogram(data, x="odometer")
+    fig = px.histogram(car_data, x="odometer")
     st.plotly_chart(fig, use_container_width=True)
+    
+build_scatter = st.checkbox("Mostrar dispersion (odometer vs price)")
+
+
 
 if build_scatter:
     st.write("Dispersion odometer vs price")
-    fig = px.scatter(data, x="odometer", y="price",opacity=0.6)
+    fig = px.scatter(car_data, x="odometer", y="price",opacity=0.6)
     st.plotly_chart(fig, use_container_width=True)
