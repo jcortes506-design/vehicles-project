@@ -7,7 +7,6 @@ car_data = pd.read_csv('./vehicles_us.csv')
 st.header('Exploratory Data Analysis - Vehicles Dataset')
 
 hist_buttom = st.button('Construir Histograma')
-data = car_data[(car_data["price"] >= price_range[0]) & (car_data["price"] <= price_range[1])]
 if hist_buttom:
     st.write('Creacion de un histograma para odometer')
     fig = px.histogram(car_data, x="odometer")
